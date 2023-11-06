@@ -12,8 +12,6 @@ import (
 	tb "gopkg.in/telebot.v3"
 )
 
-// var Bot *tb.Bot
-
 func HandleHelp(ctx tb.Context) error {
 	message := `
   Any input text will call as shell commend.
