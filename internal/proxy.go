@@ -16,7 +16,6 @@ import (
 type DialContext func(ctx context.Context, network, addr string) (net.Conn, error)
 
 func NewClientFromEnv(proxyHost string) (*http.Client, error) {
-
 	baseDialer := &net.Dialer{
 		Timeout:   30 * time.Second,
 		KeepAlive: 30 * time.Second,
@@ -97,5 +96,6 @@ func NewConnectSettings(userId int64, socks5, token string) (tb.Settings, error)
 	}
 	httpClient := newClient(dialContext)
 	BotSettings.Client = httpClient
+
 	return BotSettings, nil
 }

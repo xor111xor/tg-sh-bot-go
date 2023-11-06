@@ -14,7 +14,7 @@ import (
 
 func HandleHelp(ctx tb.Context) error {
 	message := `
-  Any input text will call as shell commend.
+  Any input text will call as shell command.
   Support command:
   /tasks show all running tasks`
 	return ctx.Send(message)
@@ -48,7 +48,7 @@ func doCd(ctx tb.Context) bool {
 		log.Println(err)
 	}
 	msg := fmt.Sprintf("pwd: %s", pwd)
-	_ = ctx.Send(msg)
+	err = ctx.Send(msg)
 	if err != nil {
 		log.Println(err)
 	}
@@ -116,7 +116,10 @@ func doExecCommand(commandText string, ctx tb.Context) {
 		}
 		if idx > 3 {
 			msg := fmt.Sprintf("Command not finished, you can kill by send kill %d", task.Pid)
-			_ = ctx.Send(msg)
+			err = ctx.Send(msg)
+			if err != nil {
+				log.Println(err)
+			}
 		}
 	}
 	err = cmd.Wait()
@@ -138,7 +141,10 @@ func doExecCommand(commandText string, ctx tb.Context) {
 
 	if idx > 3 {
 		msg := fmt.Sprintf("Task finished: %s", task.CmdText)
-		_ = ctx.Send(msg)
+		err = ctx.Send(msg)
+		if err != nil {
+			log.Println(err)
+		}
 	}
 }
 
