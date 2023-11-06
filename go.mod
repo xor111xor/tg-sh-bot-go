@@ -1,4 +1,4 @@
-module github.com/xor111xor/telegram-shell-bot-go
+module github.com/xor111xor/tg-sh-bot-go
 
 go 1.21.3
 
